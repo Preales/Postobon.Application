@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Common.Application.Dtos
+namespace Application.Common.Application.Models
 {
-    internal class Dto
+    internal class Model
     {
     }
 }

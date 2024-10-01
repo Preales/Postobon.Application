@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Application.Common.Infraestructure.IRepositories;
 
 namespace Application.Common.Infraestructure.Repository
 {
-    internal class Repository
+    internal class Repository : IRepository
     {
     }
 }
