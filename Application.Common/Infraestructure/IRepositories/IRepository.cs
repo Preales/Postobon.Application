@@ -1,5 +1,5 @@
-﻿using Application.Common.Application.Dtos;
-using Application.Common.Infrastructure.DataAccess.Entities.Base;
+﻿using Application.Common.Domain.Dtos;
+using Application.Common.Infraestructure.Entities.Base;
 using System.Linq.Expressions;
 
 namespace Application.Common.Infraestructure.IRepositories

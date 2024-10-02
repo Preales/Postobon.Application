@@ -1,7 +1,6 @@
 ﻿using Application.Common.Infraestructure.Entities;
 using Application.Common.Infraestructure.IRepositories;
 using Application.Common.Infraestructure.Repository;
-using Application.Common.Utility;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Common.Infraestructure.Repositories

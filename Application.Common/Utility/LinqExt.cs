@@ -1,7 +1,6 @@
-﻿using Application.Common.Application.Dtos;
+﻿using Application.Common.Domain.Dtos;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 using System.Text;
 

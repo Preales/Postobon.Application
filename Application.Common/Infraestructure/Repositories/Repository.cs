@@ -1,6 +1,6 @@
-﻿using Application.Common.Application.Dtos;
+﻿using Application.Common.Domain.Dtos;
+using Application.Common.Infraestructure.Entities.Base;
 using Application.Common.Infraestructure.IRepositories;
-using Application.Common.Infrastructure.DataAccess.Entities.Base;
 using Application.Common.Utility;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;

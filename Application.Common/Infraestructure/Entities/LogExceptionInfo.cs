@@ -1,4 +1,4 @@
-﻿using Application.Common.Infrastructure.DataAccess.Entities.Base;
+﻿using Application.Common.Infraestructure.Entities.Base;
 using Application.Common.Utility;
 
 

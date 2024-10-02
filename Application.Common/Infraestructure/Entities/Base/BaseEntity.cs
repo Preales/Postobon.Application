@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Application.Common.Infrastructure.DataAccess.Entities.Base
+namespace Application.Common.Infraestructure.Entities.Base
 {
     [ExcludeFromCodeCoverage]
     public abstract class BaseEntity

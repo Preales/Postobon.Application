@@ -1,8 +1,7 @@
 ﻿using Application.Common.Infraestructure.IRepositories;
 using Application.Common.Infraestructure.Repositories;
-using Application.Common.Utility;
+using Application.Common.Infraestructure.Repository;
 using Application.Common.Utility.ExceptionResources;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 
@@ -10,7 +9,7 @@ namespace Application.Common.Infraestructure.DataAccess
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public readonly DbContext _dbContext;
+        public readonly ApplicationDbContext _dbContext;
         public ISystem _system;
         public IMemoryCache _memoryCache;
         public IConfiguration _configuration;
@@ -33,7 +32,28 @@ namespace Application.Common.Infraestructure.DataAccess
             }
         }
 
-        public UnitOfWork(DbContext dbContext,
+        private IMacrosegmentRepository _macrosegmentRepository { get; set; }
+
+        public IMacrosegmentRepository MacrosegmentRepository
+        {
+            get
+            {
+                return _macrosegmentRepository = _macrosegmentRepository ?? new MacrosegmentRepository(_dbContext, _system);
+            }
+        }
+
+        private ITypologyRepository _typologyRepository { get; set; }
+
+        public ITypologyRepository TypologyRepository
+        {
+            get
+            {
+                return _typologyRepository = _typologyRepository ?? new TypologyRepository(_dbContext, _system);
+            }
+        }
+
+
+        public UnitOfWork(ApplicationDbContext dbContext,
                          ISystem system,
                          IMemoryCache memoryCache,
                          IConfiguration configuration)
