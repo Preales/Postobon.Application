@@ -1,3 +1,5 @@
+using Application.Common.Application.Midleware;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -15,6 +17,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+//TODO: Crear extension en el proyecto common
+app.UseMiddleware<AuthMiddleware>();
 
 app.UseHttpsRedirection();
 

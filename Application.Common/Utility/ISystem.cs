@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Application.Common.Application.Midleware;
 
 namespace Application.Common.Utility
 {
@@ -11,9 +6,11 @@ namespace Application.Common.Utility
     {
         public List<string> Permissions { get; set; }
         //List<RoleInfo> Roles { get; set; }
-        public Guid TenantId { get; set; }
-        //UserInfo User { get; set; }
+        UserInfo User { get; set; }
 
-        //void Set(UserInfo user, List<RoleInfo> roles, Guid tenantId, List<string> permissions);
+        void Set(
+            UserInfo user,
+            //List<RoleInfo> roles, 
+            List<string> permissions);
     }
 }

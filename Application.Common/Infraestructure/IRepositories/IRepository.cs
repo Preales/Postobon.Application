@@ -14,7 +14,7 @@ namespace Application.Common.Infraestructure.IRepositories
 
         Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate);
 
-        Guid GetCurrentUser();
+        string GetCurrentUser();
 
         Task<IEnumerable<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate);
 

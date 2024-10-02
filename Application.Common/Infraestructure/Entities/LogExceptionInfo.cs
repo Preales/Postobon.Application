@@ -25,5 +25,9 @@ namespace Application.Common.Infraestructure.Entities
         [Required]
         [MaxLength(MaxLength = 50, Message = "The field Type accept 50 character(s)")]
         public string Type { get; set; }
+
+        [Required]
+        [MaxLength(MaxLength = 2000, Message = "The field Description accept 2000 character(s)")]
+        public string Description { get; set; }
     }
 }

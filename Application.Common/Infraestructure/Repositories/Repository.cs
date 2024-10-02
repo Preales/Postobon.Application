@@ -22,24 +22,22 @@ namespace Application.Common.Infraestructure.Repository
 
         public TModel Add(TModel entity)
         {
-            //entity.Id = (entity.Id == Guid.Empty) ? Guid.NewGuid() : entity.Id;            
-            entity.CreationUser = !entity.CreationUser.CompareString(string.Empty) ? entity.CreationUser : GetCurrentUser();
-            //entity.ModifiedBy = (entity.ModifiedBy != Guid.Empty) ? entity.ModifiedBy : GetCurrentUser();
-            //entity.Status = (entity.Status == false) ? false : true;
-            //entity.CreatedOn = DateExt.getDate();
-            //entity.ModifiedOn = DateExt.getDate();
+            AssignAuditField(entity);
             return ModelDbSets.Add(entity).Entity;
+        }
+
+        private void AssignAuditField(TModel entity)
+        {
+            //entity.Id = (entity.Id == Guid.Empty) ? Guid.NewGuid() : entity.Id;            
+            entity.CreationUser = !string.IsNullOrEmpty(entity.CreationUser) ? entity.CreationUser : GetCurrentUser();
+            entity.CreationDate = DateExt.getDate();
+            entity.Deleted = false;
         }
 
         public async Task<TModel> AddAsync(TModel entity)
         {
-            //entity.Id = (entity.Id == Guid.Empty) ? Guid.NewGuid() : entity.Id;            
-            //entity.CreatedBy = (entity.CreatedBy != Guid.Empty) ? entity.CreatedBy : GetCurrentUser();
-            //entity.ModifiedBy = (entity.ModifiedBy != Guid.Empty) ? entity.ModifiedBy : GetCurrentUser();
-            //entity.Status = (entity.Status == false) ? false : true;
-            //entity.CreatedOn = DateExt.getDate();
-            //entity.ModifiedOn = DateExt.getDate();
-            //await Task.Run(() => _dbContext.Entry(entity).State = EntityState.Added);
+            AssignAuditField(entity);
+            await Task.Run(() => _dbContext.Entry(entity).State = EntityState.Added);
             return entity;
         }
 
@@ -47,12 +45,7 @@ namespace Application.Common.Infraestructure.Repository
         {
             foreach (var entity in entities)
             {
-                //entity.Id = (entity.Id == Guid.Empty) ? Guid.NewGuid() : entity.Id;                
-                //entity.CreatedBy = (entity.CreatedBy != Guid.Empty) ? entity.CreatedBy : GetCurrentUser();
-                //entity.ModifiedBy = (entity.ModifiedBy != Guid.Empty) ? entity.ModifiedBy : GetCurrentUser();
-                //entity.CreatedOn = DateExt.getDate();
-                //entity.ModifiedOn = DateExt.getDate();
-                //entity.Status = (entity.Status == false) ? false : true;
+                AssignAuditField(entity);
             }
 
             ModelDbSets.AddRange(entities);
@@ -72,10 +65,9 @@ namespace Application.Common.Infraestructure.Repository
             return await ModelDbSets.AsNoTracking().Where(predicate).FirstOrDefaultAsync();
         }
 
-        public Guid GetCurrentUser()
+        public string GetCurrentUser()
         {
-            return Guid.Empty;
-            // return (_system.User?.Id != null) ? _system.User.Id : CONSTANT_USER.AdministratorUser;
+            return (_system.User?.Id != null) ? _system.User.Id : "system";//CONSTANT_USER.AdministratorUser;
         }
 
         public async Task<IEnumerable<TModel>> GetListAsync(Expression<Func<TModel, bool>> predicate)
@@ -127,17 +119,15 @@ namespace Application.Common.Infraestructure.Repository
 
         public void Update(TModel entity)
         {
-            //entity.TenantId = (entity.TenantId != Guid.Empty) ? entity.TenantId : _system.TenantId;
-            //entity.ModifiedBy = (entity.ModifiedBy != Guid.Empty) ? entity.ModifiedBy : GetCurrentUser();
-            //entity.ModifiedOn = DateExt.getDate();
+            entity.ModificationUser = GetCurrentUser();
+            entity.ModificationDate = DateExt.getDate();
             ModelDbSets.Attach(entity);
         }
 
         public async Task UpdateAsync(TModel entity)
         {
-            //entity.TenantId = (entity.TenantId != Guid.Empty) ? entity.TenantId : _system.TenantId;
-            //entity.ModifiedBy = (entity.ModifiedBy != Guid.Empty) ? entity.ModifiedBy : GetCurrentUser();
-            //entity.ModifiedOn = DateExt.getDate();
+            entity.ModificationUser = GetCurrentUser();
+            entity.ModificationDate = DateExt.getDate();
             await Task.Run(() => _dbContext.Entry(entity).State = EntityState.Modified);
         }
     }
