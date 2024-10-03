@@ -7,6 +7,9 @@ namespace Application.Common.Infraestructure.DataAccess
     {
         public DbSet<Macrosegment> Macrosegment { get; set; }
         public DbSet<Typology> Typologie { get; set; }
+        public DbSet<LogExceptionInfo> LogException { get; set; }
+
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

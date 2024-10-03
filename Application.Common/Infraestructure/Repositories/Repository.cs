@@ -1,7 +1,6 @@
 ﻿using Application.Common.Domain.Dtos;
 using Application.Common.Infraestructure.Entities.Base;
 using Application.Common.Infraestructure.IRepositories;
-using Application.Common.Utility;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -22,21 +21,29 @@ namespace Application.Common.Infraestructure.Repository
 
         public TModel Add(TModel entity)
         {
-            AssignAuditField(entity);
+            AssignAuditFields(entity);
             return ModelDbSets.Add(entity).Entity;
         }
 
-        private void AssignAuditField(TModel entity)
+        private void AssignAuditFields(TModel entity, bool isCreation = true)
         {
-            //entity.Id = (entity.Id == Guid.Empty) ? Guid.NewGuid() : entity.Id;            
-            entity.CreationUser = !string.IsNullOrEmpty(entity.CreationUser) ? entity.CreationUser : GetCurrentUser();
-            entity.CreationDate = DateExt.getDate();
-            entity.Deleted = false;
+            if (isCreation)
+            {
+                //entity.Id = (entity.Id == Guid.Empty) ? Guid.NewGuid() : entity.Id;            
+                entity.CreationUser = !string.IsNullOrEmpty(entity.CreationUser) ? entity.CreationUser : GetCurrentUser();
+                entity.CreationDate = DateExt.getDate();
+                entity.Deleted = false;
+            }
+            else
+            {
+                entity.ModificationUser = GetCurrentUser();
+                entity.ModificationDate = DateExt.getDate();
+            }
         }
 
         public async Task<TModel> AddAsync(TModel entity)
         {
-            AssignAuditField(entity);
+            AssignAuditFields(entity);
             await Task.Run(() => _dbContext.Entry(entity).State = EntityState.Added);
             return entity;
         }
@@ -45,7 +52,7 @@ namespace Application.Common.Infraestructure.Repository
         {
             foreach (var entity in entities)
             {
-                AssignAuditField(entity);
+                AssignAuditFields(entity);
             }
 
             ModelDbSets.AddRange(entities);
@@ -67,7 +74,7 @@ namespace Application.Common.Infraestructure.Repository
 
         public string GetCurrentUser()
         {
-            return (_system.User?.Id != null) ? _system.User.Id : "system";//CONSTANT_USER.AdministratorUser;
+            return (_system.User?.Id != null) ? _system.User.Id : "systemRepo";//CONSTANT_USER.AdministratorUser;
         }
 
         public async Task<IEnumerable<TModel>> GetListAsync(Expression<Func<TModel, bool>> predicate)
@@ -119,15 +126,13 @@ namespace Application.Common.Infraestructure.Repository
 
         public void Update(TModel entity)
         {
-            entity.ModificationUser = GetCurrentUser();
-            entity.ModificationDate = DateExt.getDate();
+            AssignAuditFields(entity, false);
             ModelDbSets.Attach(entity);
         }
 
         public async Task UpdateAsync(TModel entity)
         {
-            entity.ModificationUser = GetCurrentUser();
-            entity.ModificationDate = DateExt.getDate();
+            AssignAuditFields(entity, false);
             await Task.Run(() => _dbContext.Entry(entity).State = EntityState.Modified);
         }
     }

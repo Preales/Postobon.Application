@@ -1,15 +1,13 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Application.Common.Infraestructure.Entities.Base
+namespace Application.Common.Infraestructure.Entities.Base;
+
+[ExcludeFromCodeCoverage]
+public abstract class BaseEntity
 {
-    [ExcludeFromCodeCoverage]
-    public abstract class BaseEntity
-    {
-        public int Id { get; set; }
-        public DateTime? CreationDate { get; set; }
-        public string CreationUser { get; set; }
-        public DateTime? ModificationDate { get; set; }
-        public string ModificationUser { get; set; }
-        public bool Deleted { get; set; }
-    }
+    public DateTime? CreationDate { get; set; }
+    public string CreationUser { get; set; } = string.Empty;
+    public DateTime? ModificationDate { get; set; }
+    public string ModificationUser { get; set; } = string.Empty;
+    public bool Deleted { get; set; }
 }

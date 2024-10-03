@@ -1,31 +1,22 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.Common.Application.Midleware
 {
     public sealed class AuthMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly IServiceScopeFactory _factory;
 
         public AuthMiddleware(
-            RequestDelegate next,
-            IServiceScopeFactory factory
+            RequestDelegate next
             )
         {
             _next = next;
-            _factory = factory;
         }
 
 
-        public async Task InvokeAsync(HttpContext context)
+        public async Task InvokeAsync(HttpContext context, ISystem system)
         {
-            // Lógica del middleware aquí
-            using (var scope = _factory.CreateScope())
-            {
-                var systemService = scope.ServiceProvider.GetRequiredService<ISystem>();
-                systemService.Set(new UserInfo("system"), default!);
-            }
+            system.Set(new UserInfo("system"), default!);
             await _next(context);
         }
     }
