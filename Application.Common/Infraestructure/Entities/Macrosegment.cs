@@ -6,7 +6,9 @@ namespace Application.Common.Infraestructure.Entities
 {
 	public class Macrosegment : BaseEntity
 	{
-		[Required]
+        [Required]
+        public int Id { get; set; }
+        [Required]
 		[MaxLength(MaxLength = 200 , Message = "The field NameMacrosegment accept 200 character(s)")]
 		public string NameMacrosegment{ get; set; }
 

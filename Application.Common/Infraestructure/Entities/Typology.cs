@@ -6,7 +6,11 @@ namespace Application.Common.Infraestructure.Entities
 {
 	public class Typology : BaseEntity
 	{
-		[Required]
+
+        [Required]
+        public int Id { get; set; }
+
+        [Required]
 		[MaxLength(MaxLength = 200 , Message = "The field NameTypology accept 200 character(s)")]
 		public string NameTypology{ get; set; }
 
