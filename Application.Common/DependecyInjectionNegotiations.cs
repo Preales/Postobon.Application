@@ -37,6 +37,8 @@ namespace Application.Common
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IMacrosegmentRepository, MacrosegmentRepository>();
             services.AddScoped<ITypologyRepository, TypologyRepository>();
+            services.AddScoped<IApproval_RangeRepository, Approval_RangeRepository>();
+            services.AddScoped<IApproval_Range_DetailsRepository, Approval_Range_DetailsRepository>();
             services.AddScoped<ExceptionModule>();
             return services;
         }
@@ -45,6 +47,8 @@ namespace Application.Common
         {
             services.AddScoped<IMacrosegmentService, MacrosegmentService>();
             services.AddScoped<ITypologyService, TypologyService>();
+            services.AddScoped<IApproval_RangeService, Approval_RangeService>();
+            services.AddScoped<IApproval_Range_DetailsService, Approval_Range_DetailsService>();
             return services;
         }
 

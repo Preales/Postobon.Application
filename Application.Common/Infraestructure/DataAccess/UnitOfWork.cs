@@ -53,6 +53,27 @@ namespace Application.Common.Infraestructure.DataAccess
         }
 
 
+        private IApproval_RangeRepository _approval_RangeRepository { get; set; }
+
+        public IApproval_RangeRepository Approval_RangeRepository
+        {
+            get
+            {
+                return _approval_RangeRepository = _approval_RangeRepository ?? new Approval_RangeRepository(_dbContext, _system);
+            }
+        }
+
+
+        private IApproval_Range_DetailsRepository _approval_Range_DetailsRepository { get; set; }
+
+        public IApproval_Range_DetailsRepository Approval_Range_DetailsRepository
+        {
+            get
+            {
+                return _approval_Range_DetailsRepository = _approval_Range_DetailsRepository ?? new Approval_Range_DetailsRepository(_dbContext, _system);
+            }
+        }
+
         public UnitOfWork(ApplicationDbContext dbContext,
                          ISystem system,
                          IMemoryCache memoryCache,

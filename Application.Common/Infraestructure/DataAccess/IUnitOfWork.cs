@@ -1,4 +1,5 @@
-﻿using Application.Common.Infraestructure.IRepositories;
+﻿using Application.Common.Domain.Services;
+using Application.Common.Infraestructure.IRepositories;
 
 namespace Application.Common.Infraestructure.DataAccess
 {
@@ -8,6 +9,8 @@ namespace Application.Common.Infraestructure.DataAccess
         ILogExceptionRepository Log { get; }
         IMacrosegmentRepository MacrosegmentRepository { get; }
         ITypologyRepository TypologyRepository { get; }
+        IApproval_RangeRepository Approval_RangeRepository { get; }
+        IApproval_Range_DetailsRepository Approval_Range_DetailsRepository { get; }        
 
         int SaveChanges();
 
