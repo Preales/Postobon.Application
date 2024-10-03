@@ -51,8 +51,11 @@ namespace Application.Common.Utility
                 message = ex.Message;
 
             var info = Reflexion.GetCurrentMethod();
+            Guid id = Guid.NewGuid();
             var logEx = new LogExceptionInfo()
             {
+                Id = id,
+                Name = id.ToString(),
                 Class = info.Item2 ?? ex.TargetSite?.Name ?? "NONE",
                 Source = ex.Source ?? "NONE",
                 CreationUser = "system", //CONSTANT_USER.AdministratorUser,

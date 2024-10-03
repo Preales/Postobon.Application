@@ -1,11 +1,17 @@
 ﻿using Application.Common.Infraestructure.Entities.Base;
-using Application.Common.Utility;
 
 
 namespace Application.Common.Infraestructure.Entities
 {
     public class LogExceptionInfo : BaseEntity
     {
+        [Required]
+        public Guid Id { get; set; }
+
+        [Required]
+        [MaxLength(MaxLength = 100, Message = "The field Class accept 50 character(s)")]
+        public required string Name { get; set; }
+
         [Required]
         [MaxLength(MaxLength = 50, Message = "The field Class accept 50 character(s)")]
         public string Class { get; set; }
@@ -27,7 +33,7 @@ namespace Application.Common.Infraestructure.Entities
         public string Type { get; set; }
 
         [Required]
-        [MaxLength(MaxLength = 2000, Message = "The field Description accept 2000 character(s)")]
+        [MaxLength(MaxLength = 255, Message = "The field Description accept 2000 character(s)")]
         public string Description { get; set; }
     }
 }
