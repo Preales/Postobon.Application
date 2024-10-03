@@ -37,6 +37,7 @@ namespace Application.Common
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IMacrosegmentRepository, MacrosegmentRepository>();
             services.AddScoped<ITypologyRepository, TypologyRepository>();
+            services.AddScoped<IMinimunWageRepository, MinimunWageRepository>();
             services.AddScoped<ExceptionModule>();
             return services;
         }
@@ -44,6 +45,8 @@ namespace Application.Common
         private static IServiceCollection AddService(this IServiceCollection services)
         {
             services.AddScoped<IMacrosegmentService, MacrosegmentService>();
+            services.AddScoped<IMinimunWageService, MinimunWageService>();
+
             return services;
         }
 

@@ -8,6 +8,7 @@ namespace Application.Common.Infraestructure.DataAccess
         ILogExceptionRepository Log { get; }
         IMacrosegmentRepository MacrosegmentRepository { get; }
         ITypologyRepository TypologyRepository { get; }
+        IMinimunWageRepository MinimunWageRepository { get; }
 
         int SaveChanges();
 

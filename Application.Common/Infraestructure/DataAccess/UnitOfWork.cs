@@ -52,6 +52,16 @@ namespace Application.Common.Infraestructure.DataAccess
             }
         }
 
+        private IMinimunWageRepository _minimunWageRepository { get; set; }
+
+        public IMinimunWageRepository MinimunWageRepository
+        {
+            get
+            {
+                return _minimunWageRepository = _minimunWageRepository ?? new MinimunWageRepository(_dbContext, _system);
+            }
+        }
+
 
         public UnitOfWork(ApplicationDbContext dbContext,
                          ISystem system,
