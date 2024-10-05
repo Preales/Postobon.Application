@@ -32,6 +32,9 @@ namespace Application.Common.Infraestructure.DataAccess.Configurations.Base
             builder.Property(e => e.Deleted)
                 .HasColumnName("BDeleted")
                 .IsUnicode(false);
+
+            builder.HasQueryFilter(p => !p.Deleted);
+
         }
     }
 }

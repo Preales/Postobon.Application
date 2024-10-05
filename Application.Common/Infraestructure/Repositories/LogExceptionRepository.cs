@@ -7,9 +7,9 @@ namespace Application.Common.Infraestructure.Repositories
 {
     public class LogExceptionRepository : Repository<LogExceptionInfo>, ILogExceptionRepository
     {
-        private DbContext _db;
+        private ApplicationDbContext _db;
 
-        public LogExceptionRepository(DbContext dbContext, ISystem system) : base(dbContext, system)
+        public LogExceptionRepository(ApplicationDbContext dbContext, ISystem system) : base(dbContext, system)
         {
             _db = dbContext;
             _system = system;

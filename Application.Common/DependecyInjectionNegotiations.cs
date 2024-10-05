@@ -44,6 +44,7 @@ namespace Application.Common
         private static IServiceCollection AddService(this IServiceCollection services)
         {
             services.AddScoped<IMacrosegmentService, MacrosegmentService>();
+            services.AddScoped<ITypologyService, TypologyService>();
             return services;
         }
 

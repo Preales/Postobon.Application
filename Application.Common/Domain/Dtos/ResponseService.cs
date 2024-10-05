@@ -2,7 +2,11 @@
 
 namespace Application.Common.Domain.Dtos
 {
-    public class ResponseService<T>
+    public interface IResponseService
+    {
+    }
+
+    public class ResponseService<T> : IResponseService
     {
         public bool Status { get; set; }
         public HttpStatusCode HttpStatusCode { get; set; }

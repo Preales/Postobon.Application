@@ -10,9 +10,9 @@ namespace Application.Common.Infraestructure.DataAccess
     public class UnitOfWork : IUnitOfWork
     {
         public readonly ApplicationDbContext _dbContext;
-        public ISystem _system;
-        public IMemoryCache _memoryCache;
-        public IConfiguration _configuration;
+        public readonly ISystem _system;
+        public readonly IMemoryCache _memoryCache;
+        public readonly IConfiguration _configuration;
 
         //private IAuditRepository _audit { get; set; }
         //public IAuditRepository Audit

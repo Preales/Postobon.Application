@@ -9,7 +9,6 @@ namespace Application.Common.Domain.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ExceptionModule _exceptionModule;
-
         public MacrosegmentService(IUnitOfWork unitOfWork,
                 ExceptionModule exceptionModule)
         {
@@ -38,9 +37,11 @@ namespace Application.Common.Domain.Services
             Macrosegment result = null;
             try
             {
-                result = await _unitOfWork.MacrosegmentRepository.GetAsync(x => x.Id == item.Id);
+                result = await _unitOfWork.MacrosegmentRepository.GetAsync(x => x.Code == item.Code);
                 if (result != null)
                 {
+                    /// Aqui deben de agregar la logica de los campos que cambiaron o en su defecto el automapper					
+                    result.Description = item.Description;
                     await _unitOfWork.MacrosegmentRepository.UpdateAsync(result);
                     await _unitOfWork.SaveChangesAsync();
                 }
@@ -56,12 +57,12 @@ namespace Application.Common.Domain.Services
             return result;
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(string code)
         {
             bool result = false;
             try
             {
-                Macrosegment item = await _unitOfWork.MacrosegmentRepository.GetAsync(x => x.Id == id);
+                Macrosegment item = await _unitOfWork.MacrosegmentRepository.GetAsync(x => x.Code == code);
                 if (item != null)
                 {
                     _unitOfWork.MacrosegmentRepository.Remove(item);
@@ -80,12 +81,37 @@ namespace Application.Common.Domain.Services
             return result;
         }
 
-        public async Task<Macrosegment> Get(int id)
+        public async Task<bool> DeleteLogic(string code)
+        {
+            bool result = false;
+            try
+            {
+                Macrosegment item = await _unitOfWork.MacrosegmentRepository.GetAsync(x => x.Code == code);
+                if (item != null)
+                {
+                    item.Deleted = true;
+                    await _unitOfWork.MacrosegmentRepository.UpdateAsync(item);
+                    await _unitOfWork.SaveChangesAsync();
+                    result = true;
+                }
+                else
+                {
+                    throw new ArgumentException("El item que intentas eliminar no existe");
+                }
+            }
+            catch (Exception ex)
+            {
+                await _exceptionModule.Log(ex);
+            }
+            return result;
+        }
+
+        public async Task<Macrosegment> Get(string code)
         {
             Macrosegment result = new Macrosegment();
             try
             {
-                result = await _unitOfWork.MacrosegmentRepository.GetAsync(x => x.Id == id);
+                result = await _unitOfWork.MacrosegmentRepository.GetAsync(x => x.Code == code);
             }
             catch (Exception ex)
             {
