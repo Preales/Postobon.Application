@@ -6,7 +6,8 @@ namespace Application.Common.Infraestructure.Entities
 {
 	public class Approval_Range_Details : BaseEntity
 	{
-		[Required]
+        public int Id { get; set; }
+        [Required]
 		public int ApprovalRangeCode { get; set; }
 
 		[Required]
