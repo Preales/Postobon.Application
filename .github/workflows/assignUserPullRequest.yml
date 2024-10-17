@@ -12,6 +12,5 @@ jobs:
       - name: Assign PR
         uses: kentaro-m/auto-assign-action@v2.0.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          addReviewers: true
-          assigness: 'Preales'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          configuration-path: .github/auto_assign.yml
