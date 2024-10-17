@@ -1,5 +1,5 @@
-﻿using Application.Common.Application.Dtos;
-using Application.Common.Infrastructure.DataAccess.Entities.Base;
+﻿using Application.Common.Domain.Dtos;
+using Application.Common.Infraestructure.Entities.Base;
 using System.Linq.Expressions;
 
 namespace Application.Common.Infraestructure.IRepositories
@@ -14,7 +14,7 @@ namespace Application.Common.Infraestructure.IRepositories
 
         Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate);
 
-        Guid GetCurrentUser();
+        string GetCurrentUser();
 
         Task<IEnumerable<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate);
 

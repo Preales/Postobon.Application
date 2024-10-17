@@ -1,4 +1,4 @@
-using Application.Common.Infrastructure.DataAccess.Entities.Base;
+using Application.Common.Infraestructure.Entities.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Diagnostics.CodeAnalysis;
@@ -32,6 +32,9 @@ namespace Application.Common.Infraestructure.DataAccess.Configurations.Base
             builder.Property(e => e.Deleted)
                 .HasColumnName("BDeleted")
                 .IsUnicode(false);
+
+            builder.HasQueryFilter(p => !p.Deleted);
+
         }
     }
 }

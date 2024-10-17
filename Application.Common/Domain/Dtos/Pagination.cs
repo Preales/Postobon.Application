@@ -1,7 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
-namespace Application.Common.Application.Dtos
+namespace Application.Common.Domain.Dtos
 {
     /// <summary>
     /// Tipo de ordenamiento
@@ -29,7 +28,7 @@ namespace Application.Common.Application.Dtos
 
         public Pagination()
         {
-            this._rowsPage = 30;
+            _rowsPage = 30;
         }
 
         /// <summary>
