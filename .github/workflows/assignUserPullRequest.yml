@@ -2,14 +2,16 @@ name: Assign PR to User
 
 on:
   pull_request:
-    types: [opened]
-
+    types:
+      - opened
+    branches:
+      - 'main'
 jobs:
   assign:
     runs-on: ubuntu-latest
     steps:
       - name: Assign PR
-        uses: actions-ecosystem/action-assign@v2
+        uses: kentaro-m/auto-assign-action@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           assigness: 'Preales'
