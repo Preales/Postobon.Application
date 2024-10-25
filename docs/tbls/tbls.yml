@@ -1,0 +1,20 @@
+# .tbls.yml
+dsn: sqlserver://Postobon-Adm:P0st0b0n.*@postobon-neg-server.database.windows.net:1433/postobon-neg-db
+
+# Path to generate document
+# Default is `dbdoc`
+docPath: doc/schema
+
+# lint: 
+#   # includeTables:
+#   #   - dbo.TBL_*
+#   excludeTables:
+#     - sysdiagrams
+#     - database_firewall_rules
+exclude:
+  - sysdiagrams
+  - sys.database_firewall_rules
+  - AuditLog
+
+# docker run --rm -v $PWD:/work -w /work ghcr.io/k1low/tbls doc postgres://dbuser:dbpass@hostname:5432/dbname
+# docker run --rm -v ${PWD}:/work -w /work ghcr.io/k1low/tbls doc sqlserver://Postobon-Adm:P0st0b0n.*@postobon-neg-server.database.windows.net:1433/postobon-neg-db
