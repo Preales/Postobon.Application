@@ -1,5 +1,5 @@
 # .tbls.yml
-dsn: sqlserver://Postobon-Adm:P0st0b0n.*@postobon-neg-server.database.windows.net:1433/postobon-neg-db
+dsn: sqlserver://[user]:[passcode]@[host]:1433/[database]
 
 # Path to generate document
 # Default is `dbdoc`
@@ -17,4 +17,3 @@ exclude:
   - AuditLog
 
 # docker run --rm -v $PWD:/work -w /work ghcr.io/k1low/tbls doc postgres://dbuser:dbpass@hostname:5432/dbname
-# docker run --rm -v ${PWD}:/work -w /work ghcr.io/k1low/tbls doc sqlserver://Postobon-Adm:P0st0b0n.*@postobon-neg-server.database.windows.net:1433/postobon-neg-db
