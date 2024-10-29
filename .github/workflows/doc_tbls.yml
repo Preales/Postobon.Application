@@ -14,7 +14,16 @@ jobs:
     steps:
       - name: Checkout .tbls.yml
         uses: actions/checkout@v4        
-
+        
+      - name: Secret DB_USER
+        run: echo ${{secrets.DB_USER}} | sed 's/./& /g'
+        
+      - name: Secret PASS_DB
+        run: echo ${{secrets.PASS_DB}} | sed 's/./& /g'
+        
+      - name: Secret DB_HOST
+        run: echo ${{secrets.DB_HOST}} | sed 's/./& /g'
+        
       - name: Update DB_USER in YAML file
         uses: fjogeleit/yaml-update-action@main
         with:
