@@ -1,0 +1,17 @@
+name: Assign PR to User
+
+on:
+  pull_request:
+    types: [opened, ready_for_review, edited, created, synchronize]
+    branches:
+      - 'master'
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assign PR
+        uses: kentaro-m/auto-assign-action@v2.0.0
+        with:
+          #repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ secrets.PAT_TOKEN }}
+          configuration-path: .github/auto_assign.yml

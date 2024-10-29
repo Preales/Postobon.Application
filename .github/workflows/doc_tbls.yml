@@ -1,0 +1,19 @@
+name: tbls
+
+on: 
+  push:
+    branches: [feature/test_linea_base]
+
+jobs:
+  doc:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout .tbls.yml
+        uses: actions/checkout@v4
+
+      - name: Setup tbls v1
+        uses: k1low/setup-tbls@v1
+
+      - name: Run tbls for generate database document
+        run: tbls doc
