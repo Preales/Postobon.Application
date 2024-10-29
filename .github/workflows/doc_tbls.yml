@@ -8,12 +8,16 @@ jobs:
   doc:
     runs-on: ubuntu-latest
 
+    permissions:
+        contents: write
+
     steps:
       - name: Checkout .tbls.yml
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4        
 
       - name: Setup tbls v1
         uses: k1low/setup-tbls@v1
 
       - name: Run tbls for generate database document
         run: tbls doc
+        

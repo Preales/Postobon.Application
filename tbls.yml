@@ -3,7 +3,7 @@ dsn: sqlserver://${{ secrets.DB_USER }}:${{ secrets.PASS_DB }}@${{ secrets.DB_HO
 
 # Path to generate document
 # Default is `dbdoc`
-docPath: doc/postobon
+docPath: docs/postobon
 
 # lint: 
 #   # includeTables:
