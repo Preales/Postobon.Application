@@ -15,14 +15,15 @@ jobs:
       - name: Checkout .tbls.yml
         uses: actions/checkout@v4        
         
-      - name: Secret DB_USER
-        run: echo ${{secrets.DB_USER}} | sed 's/./& /g'
-        
-      - name: Secret PASS_DB
-        run: echo ${{secrets.PASS_DB}} | sed 's/./& /g'
-        
-      - name: Secret DB_HOST
-        run: echo ${{secrets.DB_HOST}} | sed 's/./& /g'
+      - name: Debug environment variables
+        run: |
+          echo "DB_USER: $DB_USER"
+          echo "PASS_DB: $PASS_DB"
+          echo "DB_HOST: $DB_HOST"
+        env:
+          DB_USER: ${{ secrets.DB_USER }}
+          PASS_DB: ${{ secrets.PASS_DB }}
+          DB_HOST: ${{ secrets.DB_HOST }}
         
       - name: Update DB_USER in YAML file
         uses: fjogeleit/yaml-update-action@main
