@@ -31,7 +31,10 @@ jobs:
           propertyPath: 'dsn'
           value: "sqlserver://${{ secrets.DB_USER }}:${{ secrets.PASS_DB }}@${{ secrets.DB_HOST }}:1433/postobon-neg-db"
           commitChange: false
-          
+
+      - name: Print YAML file
+        run: cat tbls.yml
+        
       - name: Setup tbls v1
         uses: k1low/setup-tbls@v1
 
