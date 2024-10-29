@@ -16,12 +16,13 @@ jobs:
         uses: actions/checkout@v4        
 
       - name: Update DB_USER in YAML file
-        uses: fjogeleit/yaml-update-action@v1
+        uses: fjogeleit/yaml-update-action@main
         with:
           valueFile: 'tbls.yml'
           propertyPath: 'dsn'
           value: "sqlserver://${{ secrets.DB_USER }}:${{ secrets.PASS_DB }}@${{ secrets.DB_HOST }}:1433/postobon-neg-db"
-
+          commitChange: false
+          
       - name: Setup tbls v1
         uses: k1low/setup-tbls@v1
 
