@@ -1,9 +1,9 @@
 # .tbls.yml
-dsn: sqlserver://[user]:[passcode]@[host]:1433/[database]
+dsn: sqlserver://${{ secrets.DB_USER }}:${{ secrets.PASS_DB }}@${{ secrets.DB_HOST }}:1433/postobon-neg-db
 
 # Path to generate document
 # Default is `dbdoc`
-docPath: doc/schema
+docPath: doc/postobon
 
 # lint: 
 #   # includeTables:
@@ -15,5 +15,3 @@ exclude:
   - sysdiagrams
   - sys.database_firewall_rules
   - AuditLog
-
-# docker run --rm -v $PWD:/work -w /work ghcr.io/k1low/tbls doc postgres://dbuser:dbpass@hostname:5432/dbname
