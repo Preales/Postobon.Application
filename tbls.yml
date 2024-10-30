@@ -1,0 +1,10 @@
+user: Postobon-Adm
+code: ${{ PASS_DB }}
+host: ${{ HOST_DB }}
+dsn: sqlserver://${{ user }}:${{ code }}@${{ host }}:1433/postobon-neg-db
+dsn1: sqlserver://Postobon-Adm:P0st0b0n.*@postobon-neg-server.database.windows.net:1433/postobon-neg-db
+docPath: docs/postobon
+exclude:
+  - sysdiagrams
+  - sys.database_firewall_rules
+  - AuditLog
