@@ -11,3 +11,4 @@ exclude:
   - AuditLog
 user: Postobon-Adm
 code: P0st0b0n.*
+host: postobon-neg-server.database.windows.net
