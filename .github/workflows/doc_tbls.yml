@@ -19,15 +19,36 @@ jobs:
         uses: fjogeleit/yaml-update-action@main
         with:
           valueFile: 'tbls.yml'
-          propertyPath: 'dsn'
+          propertyPath: 'dsn1'
           value: ${{ vars.DNS }}
           commitChange: false
+
+      - name: Update DB_USER in YAML file
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: 'tbls.yml'
+          propertyPath: 'user'
+          value: ${{ vars.USER_DB }}
+      
+      - name: Update DB_USER in YAML file
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: 'tbls.yml'
+          propertyPath: 'code'
+          value: ${{ vars.CODE_DB }}
+
+      - name: Update DB_USER in YAML file
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: 'tbls.yml'
+          propertyPath: 'host'
+          value: ${{ vars.HOST_DB }}
 
       - name: Print YAML file
         run: cat tbls.yml
 
       - name: Print value
-        run: echo 'sqlserver://${{ vars.USER_DB }}:${{ vars.CODE_DB }}@${{ vars.HOST_DB }}:1433/postobon-neg-db'
+        run: echo '${{ vars.USER_DB }}:${{ vars.CODE_DB }}:${{ vars.HOST_DB }}:1433/postobon-neg-db'
         
       - name: Print DNS
         run: echo ${{ vars.DNS }}
