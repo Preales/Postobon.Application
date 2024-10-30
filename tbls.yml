@@ -10,3 +10,4 @@ exclude:
   - sys.database_firewall_rules
   - AuditLog
 user: Postobon-Adm
+code: P0st0b0n.*
