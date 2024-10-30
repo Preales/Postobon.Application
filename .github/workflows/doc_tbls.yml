@@ -13,24 +13,14 @@ jobs:
 
     steps:
       - name: Checkout .tbls.yml
-        uses: actions/checkout@v4        
-        
-      - name: Debug environment variables
-        run: |
-          echo "DB_USER: $DB_USER"
-          echo "PASS_DB: $PASS_DB"
-          echo "DB_HOST: $DB_HOST"
-        env:
-          DB_USER: ${{ secrets.DB_USER }}
-          PASS_DB: ${{ secrets.PASS_DB }}
-          DB_HOST: ${{ secrets.DB_HOST }}
+        uses: actions/checkout@v4
         
       - name: Update DB_USER in YAML file
         uses: fjogeleit/yaml-update-action@main
         with:
           valueFile: 'tbls.yml'
           propertyPath: 'dsn'
-          value: "sqlserver://${{ secrets.DB_USER }}:${{ secrets.PASS_DB }}@${{ secrets.DB_HOST }}:1433/postobon-neg-db"
+          value: "sqlserver://${{ vars.USER_DB }}:${{ secrets.PASS_DB }}@${{ vars.HOST_DB }}:1433/postobon-neg-db"
           commitChange: false
 
       - name: Print YAML file
