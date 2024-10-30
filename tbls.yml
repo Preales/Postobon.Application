@@ -1,8 +1,8 @@
 variables:
-  USER: ${{ USER_DB }}
-  CODE: ${{ PASS_DB }}
-  HOST: ${{ HOST_DB }}
-dsn: sqlserver://$(USER):$(CODE)@$(HOST):1433/postobon-neg-db
+  user: ${{ USER_DB }}
+  code: ${{ PASS_DB }}
+  host: ${{ HOST_DB }}
+dsn: sqlserver://$(user):$(code)@$(host):1433/postobon-neg-db
 dsn1: sqlserver://Postobon-Adm:P0st0b0n.*@postobon-neg-server.database.windows.net:1433/postobon-neg-db
 docPath: docs/postobon
 exclude:
@@ -10,5 +10,3 @@ exclude:
   - sys.database_firewall_rules
   - AuditLog
 user: Postobon-Adm
-code: P0st0b0n.*
-host: postobon-neg-server.database.windows.net
