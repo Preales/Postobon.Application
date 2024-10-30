@@ -20,20 +20,21 @@ jobs:
         with:
           valueFile: 'tbls.yml'
           propertyPath: 'dsn'
-          value: "sqlserver://${{ vars.USER_DB }}:${{ vars.CODE_DB }}@${{ vars.HOST_DB }}:1433/postobon-neg-db"
+          value: ${{ vars.DNS }}
           commitChange: false
 
       - name: Print YAML file
         run: cat tbls.yml
 
       - name: Print value
-        run: echo "sqlserver://${{ vars.USER_DB }}:${{ vars.CODE_DB }}@${{ vars.HOST_DB }}:1433/postobon-neg-db"
+        run: echo 'sqlserver://${{ vars.USER_DB }}:${{ vars.CODE_DB }}@${{ vars.HOST_DB }}:1433/postobon-neg-db'
         
       - name: Print DNS
-        run: echo "${{ vars.DNS }}"
-#      - name: Setup tbls v1
-#        uses: k1low/setup-tbls@v1
+        run: echo ${{ vars.DNS }}
 
-#      - name: Run tbls for generate database document
-#        run: tbls doc
+      - name: Setup tbls v1
+        uses: k1low/setup-tbls@v1
+
+      - name: Run tbls for generate database document
+        run: tbls doc
         
