@@ -25,10 +25,12 @@ jobs:
 
       - name: Print YAML file
         run: cat tbls.yml
-        
-      - name: Setup tbls v1
-        uses: k1low/setup-tbls@v1
 
-      - name: Run tbls for generate database document
-        run: tbls doc
+      - name: Print value
+        run: echo "sqlserver://${{ vars.USER_DB }}:${{ vars.PASS_DB }}@${{ vars.HOST_DB }}:1433/postobon-neg-db"
+#      - name: Setup tbls v1
+#        uses: k1low/setup-tbls@v1
+
+#      - name: Run tbls for generate database document
+#        run: tbls doc
         
