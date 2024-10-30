@@ -1,7 +1,6 @@
-dsn: sqlserver://${{ DB_USER }}:${{ DB_PASS }}@${{ DB_HOST }}:1433/postobon-neg-db
+dsn: sqlserver://Postobon-Adm:P0st0b0n.@postobon-neg-server.database.windows.net:1433/postobon-neg-db
 docPath: docs/postobon
 exclude:
   - sysdiagrams
   - sys.database_firewall_rules
   - AuditLog
-dsn1: sqlserver://Postobon-Adm:P0st0b0n.*@postobon-neg-server.database.windows.net:1433/postobon-neg-db
