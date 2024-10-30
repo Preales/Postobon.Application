@@ -1,11 +1,5 @@
 # .tbls.yml
-
-user: ${{ USER_DB }}
-code: ${{ PASS_DB }}
-host: ${{ HOST_DB }}
-
-dsn: sqlserver://$(user):$(code)@$(host):1433/postobon-neg-db
-dsn1: sqlserver://${{ DB_USER }}:${{ PASS_DB }}@${{ DB_HOST }}:1433/postobon-neg-db
+dsn: sqlserver://${{ DB_USER }}:${{ DB_PASS }}@${{ DB_HOST }}:1433/postobon-neg-db
 
 # Path to generate document
 # Default is `dbdoc`
