@@ -20,7 +20,7 @@ jobs:
         with:
           valueFile: 'tbls.yml'
           propertyPath: 'dsn'
-          value: "sqlserver://${{ vars.USER_DB }}:${{ secrets.PASS_DB }}@${{ vars.HOST_DB }}:1433/postobon-neg-db"
+          value: "sqlserver://${{ vars.USER_DB }}:${{ vars.PASS_DB }}@${{ vars.HOST_DB }}:1433/postobon-neg-db"
           commitChange: false
 
       - name: Print YAML file
