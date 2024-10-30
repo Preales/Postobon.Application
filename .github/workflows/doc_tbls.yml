@@ -19,7 +19,7 @@ jobs:
         uses: fjogeleit/yaml-update-action@main
         with:
           valueFile: 'tbls.yml'
-          propertyPath: 'dsn1'
+          propertyPath: 'dsn'
           value: sqlserver://${{ vars.USER_DB }}:${{ secrets.PASS_DB }}@${{ vars.HOST_DB }}:1433/postobon-neg-db
           
 
@@ -53,9 +53,9 @@ jobs:
       - name: Print DNS
         run: echo ${{ vars.DNS }}
 
-      # - name: Setup tbls v1
-      #   uses: k1low/setup-tbls@v1
+      - name: Setup tbls v1
+        uses: k1low/setup-tbls@v1
 
-      # - name: Run tbls for generate database document
-      #   run: tbls doc
+      - name: Run tbls for generate database document
+        run: tbls doc
         
