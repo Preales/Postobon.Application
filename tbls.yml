@@ -1,5 +1,6 @@
 # .tbls.yml
-dsn: sqlserver://${{ DB_USER }}:${{ DB_PASS }}@${{ DB_HOST }}:1433/postobon-neg-db
+# dsn: sqlserver://${{ DB_USER }}:${{ DB_PASS }}@${{ DB_HOST }}:1433/postobon-neg-db
+dsn: sqlserver://Postobon-Adm:P0st0b0n.*@postobon-neg-server.database.windows.net:1433/postobon-neg-db
 
 # Path to generate document
 # Default is `dbdoc`
